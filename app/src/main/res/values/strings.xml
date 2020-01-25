@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LongClick</string>
+    <string name="georg">Georg</string>
+    <string name="georg_description">Ded</string>
+    <string name="anton">Anton</string>
+    <string name="anton_description">Funny kid</string>
 </resources>
