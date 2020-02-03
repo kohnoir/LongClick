@@ -1,37 +1,38 @@
 package com.example.longclick;
 
+import android.graphics.drawable.Drawable;
+
 public class Data {
-    String name;
-    String description;
-    int age;
 
-    public Data(String name, String description, int age) {
-        this.name = name;
-        this.description = description;
-        this.age = age;
+    private Drawable image;
+    private String title;
+    private String subtitle;
+    private boolean checked;
+
+    public Data(Drawable image, String title, String subtitle, boolean checked) {
+        this.image = image;
+        this.title = title;
+        this.subtitle = subtitle;
+        this.checked = checked;
     }
 
-    public String getName() {
-        return name;
+    public Drawable getImage() {
+        return image;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getTitle() {
+        return title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSubtitle() {
+        return subtitle;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public boolean isChecked() {
+        return checked;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }
