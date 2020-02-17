@@ -12,16 +12,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class DataAdapter extends BaseAdapter {
+    ImageView image;
+    TextView title;
+    TextView subtitle;
+    CheckBox checkBox;
     private List<Data> items;
     private LayoutInflater inflater;
-    private CompoundButton.OnCheckedChangeListener myCheckChangeList
-            = new CompoundButton.OnCheckedChangeListener() {
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            items.get((Integer) buttonView.getTag()).setChecked(isChecked);
-        }
-    };
-
     DataAdapter(Context context, List<Data> items) {
         if (items == null) {
             this.items = new ArrayList<>();
@@ -66,13 +64,19 @@ public class DataAdapter extends BaseAdapter {
         if (view == null) {
             view = inflater.inflate(R.layout.item_list_view, parent, false);
         }
+        CompoundButton.OnCheckedChangeListener myCheckChangeList
+                = new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                items.get((Integer) buttonView.getTag()).setChecked(isChecked);
+            }
+        };
 
         Data itemData = items.get(position);
 
-        ImageView image = view.findViewById(R.id.imageView);
-        TextView title = view.findViewById(R.id.Name);
-        TextView subtitle = view.findViewById(R.id.Description);
-        CheckBox checkBox = view.findViewById(R.id.checkBox);
+        image = view.findViewById(R.id.imageView);
+        title = view.findViewById(R.id.Name);
+        subtitle = view.findViewById(R.id.Description);
+        checkBox = view.findViewById(R.id.checkBox);
         image.setImageDrawable(itemData.getImage());
         title.setText(itemData.getTitle());
         subtitle.setText(itemData.getSubtitle());

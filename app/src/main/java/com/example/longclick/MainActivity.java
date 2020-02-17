@@ -33,16 +33,13 @@ public class MainActivity extends AppCompatActivity {
         generateRandomItemData();
         adapter = new DataAdapter(this, null);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showItemData(position);
-            }
-        });
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                showItemData(position);
                 adapter.removeItem(position);
+                adapter.notifyDataSetChanged();
+                listView.setAdapter(adapter);
                 return true;
             }
         });
@@ -68,11 +65,13 @@ public class MainActivity extends AppCompatActivity {
                 android.R.drawable.ic_menu_call));
     }
     private void generateRandomItemData() {
-        adapter.addItem(new Data(
-                images.get(random.nextInt(images.size())),
-                "Hello" + adapter.getCount(),
-                "It\'s me",
-                random.nextBoolean()));
+        for(int i = 0; i < 10;i++) {
+            adapter.addItem(new Data(
+                    images.get(random.nextInt(images.size())),
+                    "Hello" + adapter.getCount(),
+                    "It\'s me",
+                    random.nextBoolean()));
+        }
     }
     private void showItemData(int position) {
         Data itemData = adapter.getItem(position);
