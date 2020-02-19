@@ -7,32 +7,35 @@ public class Data {
     private Drawable image;
     private String title;
     private String subtitle;
-    private boolean checked;
 
-    public Data(Drawable image, String title, String subtitle, boolean checked) {
+
+    public Data(Drawable image, String title, String subtitle ) {
         this.image = image;
         this.title = title;
         this.subtitle = subtitle;
-        this.checked = checked;
     }
 
     public Drawable getImage() {
         return image;
     }
 
+    public void setImage(Drawable image) {
+        this.image = image;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getSubtitle() {
         return subtitle;
     }
 
-    public boolean isChecked() {
-        return checked;
-    }
-
-    public void setChecked(boolean checked) {
-        this.checked = checked;
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 }

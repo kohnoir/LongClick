@@ -4,8 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +16,6 @@ public class DataAdapter extends BaseAdapter {
     ImageView image;
     TextView title;
     TextView subtitle;
-    CheckBox checkBox;
     private List<Data> items;
     private LayoutInflater inflater;
     DataAdapter(Context context, List<Data> items) {
@@ -64,26 +62,15 @@ public class DataAdapter extends BaseAdapter {
         if (view == null) {
             view = inflater.inflate(R.layout.item_list_view, parent, false);
         }
-        CompoundButton.OnCheckedChangeListener myCheckChangeList
-                = new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                items.get((Integer) buttonView.getTag()).setChecked(isChecked);
-            }
-        };
 
         Data itemData = items.get(position);
 
         image = view.findViewById(R.id.imageView);
         title = view.findViewById(R.id.Name);
         subtitle = view.findViewById(R.id.Description);
-        checkBox = view.findViewById(R.id.checkBox);
         image.setImageDrawable(itemData.getImage());
         title.setText(itemData.getTitle());
         subtitle.setText(itemData.getSubtitle());
-        checkBox.setOnCheckedChangeListener(myCheckChangeList);
-        checkBox.setTag(position);
-        checkBox.setChecked(itemData.isChecked());
-
         return view;
     }
 }

@@ -38,7 +38,7 @@
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <Button
-        android:id="@+id/checkBox"
+        android:id="@+id/btn"
         android:layout_width="92dp"
         android:layout_height="36dp"
         android:layout_marginEnd="16dp"

@@ -27,11 +27,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.zone_list);
 
-        button = findViewById(R.id.checkBox);
+        button = findViewById(R.id.btn);
         fillImages();
 
-        generateRandomItemData();
+
         adapter = new DataAdapter(this, null);
+        generateRandomItemData();
         listView.setAdapter(adapter);
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -45,10 +46,15 @@ public class MainActivity extends AppCompatActivity {
         });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               images.remove(position);
-               adapter.notifyDataSetChanged();
-               listView.setAdapter(adapter);
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+               button.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       adapter.removeItem(position);
+                       adapter.notifyDataSetChanged();
+                   }
+               });
+
             }
         });
     }
@@ -64,22 +70,23 @@ public class MainActivity extends AppCompatActivity {
         images.add(ContextCompat.getDrawable(MainActivity.this,
                 android.R.drawable.ic_menu_call));
     }
+    private void showItemData(int position) {
+        Data itemData = adapter.getItem(position);
+        Toast.makeText(MainActivity.this,
+                "Title: " + itemData.getTitle() + "\n" +
+                        "Subtitle: " + itemData.getSubtitle() + "\n"
+                ,
+                Toast.LENGTH_SHORT).show();
+    }
     private void generateRandomItemData() {
         for(int i = 0; i < 10;i++) {
             adapter.addItem(new Data(
                     images.get(random.nextInt(images.size())),
                     "Hello" + adapter.getCount(),
-                    "It\'s me",
+                    "It\'s me"+
                     random.nextBoolean()));
         }
     }
-    private void showItemData(int position) {
-        Data itemData = adapter.getItem(position);
-        Toast.makeText(MainActivity.this,
-                "Title: " + itemData.getTitle() + "\n" +
-                        "Subtitle: " + itemData.getSubtitle() + "\n" +
-                        "Checked: " + itemData.isChecked(),
-                Toast.LENGTH_SHORT).show();
-    }
+
 
 }
