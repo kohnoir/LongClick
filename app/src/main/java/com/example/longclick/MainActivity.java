@@ -38,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 showItemData(position);
-                adapter.removeItem(position);
-                adapter.notifyDataSetChanged();
-                listView.setAdapter(adapter);
                 return true;
             }
         });
@@ -50,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                button.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
+
                        adapter.removeItem(position);
                        adapter.notifyDataSetChanged();
                    }

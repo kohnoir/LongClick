@@ -57,14 +57,20 @@ public class DataAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if (view == null) {
             view = inflater.inflate(R.layout.item_list_view, parent, false);
         }
 
         Data itemData = items.get(position);
-
+        view.findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                items.remove(position);
+                notifyDataSetChanged();
+            }
+        });
         image = view.findViewById(R.id.imageView);
         title = view.findViewById(R.id.Name);
         subtitle = view.findViewById(R.id.Description);
