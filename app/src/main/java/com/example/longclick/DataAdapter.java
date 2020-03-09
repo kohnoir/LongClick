@@ -1,4 +1,5 @@
 package com.example.longclick;
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.BaseAdapter;
 
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +59,7 @@ public class DataAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, final View convertView, final ViewGroup parent) {
         View view = convertView;
         if (view == null) {
             view = inflater.inflate(R.layout.item_list_view, parent, false);
@@ -71,6 +73,16 @@ public class DataAdapter extends BaseAdapter {
                 notifyDataSetChanged();
             }
         });
+        view.findViewById(R.id.btn).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(parent.getContext(),"Title: " + getItem(position).getTitle() + "\n" +
+                "Subtitle: " + getItem(position).getSubtitle() + "\n"
+                        ,
+                        Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
         image = view.findViewById(R.id.imageView);
         title = view.findViewById(R.id.Name);
         subtitle = view.findViewById(R.id.Description);
@@ -79,4 +91,6 @@ public class DataAdapter extends BaseAdapter {
         subtitle.setText(itemData.getSubtitle());
         return view;
     }
+
+
 }

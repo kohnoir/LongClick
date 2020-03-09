@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                showItemData(position);
                 return true;
             }
         });
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         images.add(ContextCompat.getDrawable(MainActivity.this,
                 android.R.drawable.ic_menu_call));
     }
-    private void showItemData(int position) {
+    public void showItemData(int position) {
         Data itemData = adapter.getItem(position);
         Toast.makeText(MainActivity.this,
                 "Title: " + itemData.getTitle() + "\n" +
