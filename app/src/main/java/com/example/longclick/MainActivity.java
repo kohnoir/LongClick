@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private DataAdapter adapter;
     private List<Drawable> images = new ArrayList<>();
     private ListView listView;
-    Button button;
+    private Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                showItemData(position);
                 return true;
             }
         });
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                        adapter.notifyDataSetChanged();
                    }
                });
-
             }
         });
     }

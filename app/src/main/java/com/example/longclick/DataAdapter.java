@@ -15,9 +15,9 @@ import java.util.List;
 
 
 public class DataAdapter extends BaseAdapter {
-    ImageView image;
-    TextView title;
-    TextView subtitle;
+    protected ImageView image;
+    protected TextView title;
+    protected TextView subtitle;
     private List<Data> items;
     private LayoutInflater inflater;
     DataAdapter(Context context, List<Data> items) {
@@ -91,6 +91,4 @@ public class DataAdapter extends BaseAdapter {
         subtitle.setText(itemData.getSubtitle());
         return view;
     }
-
-
 }
